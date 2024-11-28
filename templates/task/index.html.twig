@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tareas de {{ app.user.email }}</h1>
+    <a href="{{ path('app_task_new') }}">Agregar nueva tarea</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.description }}
+                <a href="{{ path('app_task_edit', {id: task.id}) }}">Editar</a>
+                <a href="{{ path('app_task_delete', {id: task.id}) }}" onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

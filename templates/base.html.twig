@@ -2,16 +2,142 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Task Manager{% endblock %}</title>
+        
+        <!-- Enlace a Bootstrap CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        
         {% block stylesheets %}
-        {% endblock %}
+        <style>
+            /* Estilo de la página */
+            body {
+                background-color: #f4f4f9;
+                color: #333;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            }
 
+            /* Barra de navegación */
+            .navbar {
+                background-color: #0a1a30;
+                color: #ffffff;
+                padding: 1rem 2rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #ffffff;
+            }
+
+            .nav-link {
+                color: #ffffff;
+                font-weight: 500;
+                font-size: 1rem;
+            }
+
+            /* Contenedor principal */
+            .container {
+                max-width: 750px;
+                margin-top: 5rem;
+            }
+
+            /* Estilos de tarjeta */
+            .card {
+                background-color: #ffffff;
+                border: 1px solid #d0d0d5;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            h1, h2, h3, h4 {
+                color: #0a1a30;
+                text-align: center;
+            }
+
+            /* Botón de cerrar sesión */
+            .logout-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background-color: transparent;
+                border: none;
+                color: #ffffff;
+                font-size: 1.4rem;
+                cursor: pointer;
+            }
+
+            /* Estilo de botones */
+            .btn-custom {
+                background-color: #0a1a30;
+                border: none;
+                color: #ffffff;
+                padding: 0.7rem 2rem;
+                font-size: 1rem;
+                border-radius: 8px;
+                transition: background-color 0.3s ease;
+                display: block;
+                margin: 1rem auto 0;
+            }
+
+            .btn-custom:hover {
+                background-color: #074a6b;
+            }
+
+            /* Estilos de formulario */
+            .form-label {
+                color: #0a1a30;
+                font-weight: 500;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+
+            .form-control {
+                background-color: #f7f8fa;
+                color: #333;
+                border: 1px solid #ccd0d5;
+                border-radius: 10px;
+                padding: 0.8rem;
+                font-size: 1rem;
+                margin-top: 0.5rem;
+            }
+
+            /* Colores para los enlaces */
+            a {
+                color: #009688;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            a:hover {
+                color: #006d62;
+            }
+        </style>
+        {% endblock %}
+        
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+    
     <body>
-        {% block body %}{% endblock %}
+        <!-- Barra de navegación centrada -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid justify-content-center">
+                <a class="navbar-brand" href="{{ path('app_task_index') }}">Task Manager</a>
+                <a class="logout-btn" href="{{ path('app_logout') }}">Cerrar sesión</a>
+            </div>
+        </nav>
+        
+        <div class="container my-5">
+            <div class="card">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
